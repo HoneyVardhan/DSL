@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define MAX 100
-
+int i;
 int graph[MAX][MAX], visited[MAX];
 
 void bfs_non_recursive(int start, int n) {
@@ -10,7 +10,7 @@ void bfs_non_recursive(int start, int n) {
     while (front < rear) {
         int cur = queue[front++];
         printf("%d ", cur);
-        for (int i = 0; i < n; i++) {
+        for (i = 0; i < n; i++) {
             if (graph[cur][i] && !visited[i]) {
                 queue[rear++] = i;
                 visited[i] = 1;
@@ -25,7 +25,7 @@ int main() {
     printf("Enter number of vertices and edges: ");
     scanf("%d %d", &n, &edges);
     printf("Enter edges (u v):\n");
-    for (int i = 0; i < edges; i++) {
+    for (i = 0; i < edges; i++) {
         scanf("%d %d", &u, &v);
         graph[u][v] = graph[v][u] = 1;
     }
