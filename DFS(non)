@@ -1,0 +1,36 @@
+#include <stdio.h>
+#define MAX 100
+
+int graph[MAX][MAX], visited[MAX];
+
+void dfs_non_recursive(int start, int n) {
+    int stack[MAX], top = -1;
+    stack[++top] = start;
+    while (top != -1) {
+        int cur = stack[top--];
+        if (!visited[cur]) {
+            printf("%d ", cur);
+            visited[cur] = 1;
+        }
+        for (int i = n - 1; i >= 0; i--) 
+            if (graph[cur][i] && !visited[i]) {
+            	stack[++top] = i;
+			}
+    }
+    printf("\n");
+}
+
+int main() {
+    int n, edges, u, v, start;
+    printf("Enter no.of vertices and edges:");
+    scanf("%d %d", &n, &edges);
+    printf("Enter Edge (u v):\n");
+    while (edges--) {
+    	scanf("%d %d", &u, &v);
+		graph[u][v] = graph[v][u] = 1;
+	}
+	printf("Enter starting vertex:");
+    scanf("%d", &start);
+	dfs_non_recursive(start, n);
+    return 0;
+}
